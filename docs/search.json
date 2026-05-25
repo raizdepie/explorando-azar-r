@@ -18,6 +18,62 @@
     "href": "index.html",
     "title": "Explorando el azar con R",
     "section": "",
-    "text": "---\ntitle: “Explorando el azar con R”\n---\n# Bienvenidas y bienvenidos\nEn este taller vamos a dar nuestros primeros pasos en programación usando R, uno de los lenguajes más utilizados en el análisis de datos.\nA través de actividades simples e interactivas, exploraremos cómo usar simulaciones para aproximar probabilidades asociadas a fenómenos aleatorios.\n## Material disponible\n- [Bloque 1: Primeros pasos con R y RStudio](01_bloque_r_rstudio.html)"
+    "text": "---\ntitle: “Explorando el azar con R”\n---\n# Bienvenidas y bienvenidos\nEn este taller vamos a explorar fenómenos aleatorios usando simulaciones en R.\nA través de actividades interactivas aprenderemos:\n- cómo usar R y RStudio;\n- cómo simular experimentos aleatorios;\n- cómo aproximar probabilidades mediante simulaciones;\n- cómo visualizar patrones asociados al azar.\n## Materiales del taller\n- [Bloque 1: Primeros pasos con R y simulaciones](01_bloque_r_rstudio.html)\n- [Bloque 2: Probabilidad y probabilidad condicional](02_bloque_probabilidad_simulacion.html)"
+  },
+  {
+    "objectID": "02_bloque_simulacion.html",
+    "href": "02_bloque_simulacion.html",
+    "title": "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones",
+    "section": "",
+    "text": "En el bloque anterior usamos R para simular monedas y dados, contar resultados y construir gráficos.\nEn este bloque usaremos esas herramientas para explorar tres ideas centrales:\n\nprobabilidad como frecuencia relativa;\nprobabilidad condicional como cambio de información;\nsimulación como herramienta para resolver problemas contraintuitivos.\n\nTambién trabajaremos con una situación famosa: el problema de Monty Hall.\n\n\n\n\n\n\nIdea central\n\n\n\nUna simulación no reemplaza el razonamiento matemático, pero nos ayuda a explorar, descubrir patrones y poner a prueba nuestra intuición."
+  },
+  {
+    "objectID": "02_bloque_simulacion.html#evento-obtener-un-número-mayor-o-igual-que-5",
+    "href": "02_bloque_simulacion.html#evento-obtener-un-número-mayor-o-igual-que-5",
+    "title": "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones",
+    "section": "Evento: obtener un número mayor o igual que 5",
+    "text": "Evento: obtener un número mayor o igual que 5\n\nmean(dado >= 5)\n\n[1] 0.3328\n\n\nEste código aproxima la probabilidad de obtener 5 o 6.\nTeóricamente, esta probabilidad es:\n\n2 / 6\n\n[1] 0.3333333\n\n\n\n\n\n\n\n\nPara discutir\n\n\n\n\n¿La simulación entrega exactamente el mismo resultado que el cálculo teórico?\n¿Por qué son parecidos?\n¿Por qué no son necesariamente idénticos?"
+  },
+  {
+    "objectID": "02_bloque_simulacion.html#gráfico-de-barras-de-los-resultados",
+    "href": "02_bloque_simulacion.html#gráfico-de-barras-de-los-resultados",
+    "title": "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones",
+    "section": "Gráfico de barras de los resultados",
+    "text": "Gráfico de barras de los resultados\n\nfrecuencias <- table(factor(dado, levels = 1:6)) / length(dado)\n\nbarplot(frecuencias,\n        ylim = c(0, 0.3),\n        xlab = \"Resultado del dado\",\n        ylab = \"Frecuencia relativa\",\n        main = \"Frecuencias relativas en lanzamientos de un dado\")\n\nabline(h = 1/6, lty = 2)"
+  },
+  {
+    "objectID": "02_bloque_simulacion.html#evento-a-la-suma-es-al-menos-10",
+    "href": "02_bloque_simulacion.html#evento-a-la-suma-es-al-menos-10",
+    "title": "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones",
+    "section": "Evento A: la suma es al menos 10",
+    "text": "Evento A: la suma es al menos 10\n\nmean(suma >= 10)\n\n[1] 0.1659\n\n\nVisualicemos la distribución de la suma.\n\nbarplot(table(factor(suma, levels = 2:12)) / length(suma),\n        xlab = \"Suma de los dos dados\",\n        ylab = \"Frecuencia relativa\",\n        main = \"Distribución de la suma de dos dados\")\n\n\n\n\n\n\n\n\n\n\nPara observar\n\n\n\n\n¿Todas las sumas son igualmente probables?\n¿Qué suma aparece con mayor frecuencia?\n¿Por qué crees que ocurre eso?"
+  },
+  {
+    "objectID": "02_bloque_probabilidad_simulacion.html",
+    "href": "02_bloque_probabilidad_simulacion.html",
+    "title": "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones",
+    "section": "",
+    "text": "En el bloque anterior usamos R para simular monedas y dados, contar resultados y construir gráficos.\nEn este bloque usaremos esas herramientas para explorar tres ideas centrales:\n\nprobabilidad como frecuencia relativa;\nprobabilidad condicional como cambio de información;\nsimulación como herramienta para resolver problemas contraintuitivos.\n\nTambién trabajaremos con una situación famosa: el problema de Monty Hall.\n\n\n\n\n\n\nIdea central\n\n\n\nUna simulación no reemplaza el razonamiento matemático, pero nos ayuda a explorar, descubrir patrones y poner a prueba nuestra intuición."
+  },
+  {
+    "objectID": "02_bloque_probabilidad_simulacion.html#evento-obtener-un-número-mayor-o-igual-que-5",
+    "href": "02_bloque_probabilidad_simulacion.html#evento-obtener-un-número-mayor-o-igual-que-5",
+    "title": "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones",
+    "section": "Evento: obtener un número mayor o igual que 5",
+    "text": "Evento: obtener un número mayor o igual que 5\n\nmean(dado >= 5)\n\n[1] 0.3385\n\n\nEste código aproxima la probabilidad de obtener 5 o 6.\nTeóricamente, esta probabilidad es:\n\n2 / 6\n\n[1] 0.3333333\n\n\n\n\n\n\n\n\nPara discutir\n\n\n\n\n¿La simulación entrega exactamente el mismo resultado que el cálculo teórico?\n¿Por qué son parecidos?\n¿Por qué no son necesariamente idénticos?"
+  },
+  {
+    "objectID": "02_bloque_probabilidad_simulacion.html#gráfico-de-barras-de-los-resultados",
+    "href": "02_bloque_probabilidad_simulacion.html#gráfico-de-barras-de-los-resultados",
+    "title": "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones",
+    "section": "Gráfico de barras de los resultados",
+    "text": "Gráfico de barras de los resultados\n\nfrecuencias <- table(factor(dado, levels = 1:6)) / length(dado)\n\nbarplot(frecuencias,\n        ylim = c(0, 0.3),\n        xlab = \"Resultado del dado\",\n        ylab = \"Frecuencia relativa\",\n        main = \"Frecuencias relativas en lanzamientos de un dado\")\n\nabline(h = 1/6, lty = 2)"
+  },
+  {
+    "objectID": "02_bloque_probabilidad_simulacion.html#evento-a-la-suma-es-al-menos-10",
+    "href": "02_bloque_probabilidad_simulacion.html#evento-a-la-suma-es-al-menos-10",
+    "title": "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones",
+    "section": "Evento A: la suma es al menos 10",
+    "text": "Evento A: la suma es al menos 10\n\nmean(suma >= 10)\n\n[1] 0.1685\n\n\nVisualicemos la distribución de la suma.\n\nbarplot(table(factor(suma, levels = 2:12)) / length(suma),\n        xlab = \"Suma de los dos dados\",\n        ylab = \"Frecuencia relativa\",\n        main = \"Distribución de la suma de dos dados\")\n\n\n\n\n\n\n\n\n\n\nPara observar\n\n\n\n\n¿Todas las sumas son igualmente probables?\n¿Qué suma aparece con mayor frecuencia?\n¿Por qué crees que ocurre eso?"
   }
 ]

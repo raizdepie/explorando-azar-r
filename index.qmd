@@ -6,10 +6,20 @@ title: "Explorando el azar con R"
 
 \# Bienvenidas y bienvenidos
 
-En este taller vamos a dar nuestros primeros pasos en programación usando R, uno de los lenguajes más utilizados en el análisis de datos.
+En este taller vamos a explorar fenómenos aleatorios usando simulaciones en R.
 
-A través de actividades simples e interactivas, exploraremos cómo usar simulaciones para aproximar probabilidades asociadas a fenómenos aleatorios.
+A través de actividades interactivas aprenderemos:
 
-\## Material disponible
+\- cómo usar R y RStudio;
 
-\- \[Bloque 1: Primeros pasos con R y RStudio\](01_bloque_r\_rstudio.html)
+\- cómo simular experimentos aleatorios;
+
+\- cómo aproximar probabilidades mediante simulaciones;
+
+\- cómo visualizar patrones asociados al azar.
+
+\## Materiales del taller
+
+\- \[Bloque 1: Primeros pasos con R y simulaciones\](01_bloque_r\_rstudio.html)
+
+\- \[Bloque 2: Probabilidad y probabilidad condicional\](02_bloque_probabilidad_simulacion.html)

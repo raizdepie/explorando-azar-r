@@ -1,0 +1,473 @@
+---
+title: "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones"
+subtitle: "Explorando el azar con R"
+author: "Taller de programación, simulación y probabilidad"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# ¿Qué haremos en este bloque?
+
+En el bloque anterior usamos R para simular monedas y dados, contar resultados y construir gráficos.
+
+En este bloque usaremos esas herramientas para explorar tres ideas centrales:
+
+- probabilidad como frecuencia relativa;
+- probabilidad condicional como cambio de información;
+- simulación como herramienta para resolver problemas contraintuitivos.
+
+También trabajaremos con una situación famosa: el problema de Monty Hall.
+
+::: {.callout-note}
+## Idea central
+Una simulación no reemplaza el razonamiento matemático, pero nos ayuda a explorar, descubrir patrones y poner a prueba nuestra intuición.
+:::
+
+# 1. Probabilidad como frecuencia relativa
+
+Comencemos con una moneda. Si la moneda es equilibrada, esperamos que la probabilidad de Cara sea cercana a 0.5.
+
+Simulemos 1000 lanzamientos.
+
+```{r}
+lanzamientos <- sample(c("Cara", "Sello"),
+                       size = 1000,
+                       replace = TRUE)
+
+mean(lanzamientos == "Cara")
+```
+
+La instrucción `mean(lanzamientos == "Cara")` calcula la proporción de veces que apareció Cara.
+
+::: {.callout-question}
+## Para pensar
+
+- ¿El resultado fue exactamente 0.5?
+- ¿Debería ser exactamente 0.5?
+- ¿Qué crees que ocurrirá si hacemos 10000 lanzamientos?
+:::
+
+Visualicemos la evolución de esta proporción.
+
+```{r}
+proporcion_caras <- cumsum(lanzamientos == "Cara") / 1:1000
+
+plot(proporcion_caras,
+     type = "l",
+     ylim = c(0, 1),
+     xlab = "Número de lanzamientos",
+     ylab = "Proporción acumulada de caras",
+     main = "Probabilidad aproximada de Cara")
+
+abline(h = 0.5, lty = 2)
+```
+
+# 2. Probabilidades con un dado
+
+Ahora estudiemos eventos asociados al lanzamiento de un dado.
+
+Simulemos 10000 lanzamientos.
+
+```{r}
+dado <- sample(1:6,
+               size = 10000,
+               replace = TRUE)
+```
+
+## Evento: obtener un número mayor o igual que 5
+
+```{r}
+mean(dado >= 5)
+```
+
+Este código aproxima la probabilidad de obtener 5 o 6.
+
+Teóricamente, esta probabilidad es:
+
+```{r}
+2 / 6
+```
+
+::: {.callout-question}
+## Para discutir
+
+- ¿La simulación entrega exactamente el mismo resultado que el cálculo teórico?
+- ¿Por qué son parecidos?
+- ¿Por qué no son necesariamente idénticos?
+:::
+
+## Gráfico de barras de los resultados
+
+```{r}
+frecuencias <- table(factor(dado, levels = 1:6)) / length(dado)
+
+barplot(frecuencias,
+        ylim = c(0, 0.3),
+        xlab = "Resultado del dado",
+        ylab = "Frecuencia relativa",
+        main = "Frecuencias relativas en lanzamientos de un dado")
+
+abline(h = 1/6, lty = 2)
+```
+
+# 3. Dos dados: eventos combinados
+
+Ahora vamos a simular el lanzamiento de dos dados.
+
+```{r}
+dado1 <- sample(1:6,
+                size = 10000,
+                replace = TRUE)
+
+dado2 <- sample(1:6,
+                size = 10000,
+                replace = TRUE)
+
+suma <- dado1 + dado2
+```
+
+Veamos algunos resultados.
+
+```{r}
+head(data.frame(dado1, dado2, suma))
+```
+
+## Evento A: la suma es al menos 10
+
+```{r}
+mean(suma >= 10)
+```
+
+Visualicemos la distribución de la suma.
+
+```{r}
+barplot(table(factor(suma, levels = 2:12)) / length(suma),
+        xlab = "Suma de los dos dados",
+        ylab = "Frecuencia relativa",
+        main = "Distribución de la suma de dos dados")
+```
+
+::: {.callout-question}
+## Para observar
+
+- ¿Todas las sumas son igualmente probables?
+- ¿Qué suma aparece con mayor frecuencia?
+- ¿Por qué crees que ocurre eso?
+:::
+
+# 4. ¿Qué significa condicionar?
+
+La probabilidad condicional aparece cuando calculamos una probabilidad usando información adicional.
+
+Por ejemplo, podemos preguntar:
+
+> ¿Cuál es la probabilidad de que la suma sea al menos 10?
+
+Pero también podemos preguntar:
+
+> ¿Cuál es la probabilidad de que la suma sea al menos 10 si sabemos que el primer dado fue 6?
+
+La segunda pregunta usa más información.
+
+::: {.callout-note}
+## Idea clave
+Condicionar significa mirar solo los casos que cumplen cierta condición.
+:::
+
+# 5. Probabilidad sin información adicional
+
+Primero calculemos la probabilidad de que la suma sea al menos 10.
+
+```{r}
+mean(suma >= 10)
+```
+
+# 6. Probabilidad usando información adicional
+
+Ahora miremos solo los casos donde el primer dado fue 6.
+
+```{r}
+casos_dado1_es_6 <- dado1 == 6
+```
+
+Calculemos la probabilidad de que la suma sea al menos 10 dentro de esos casos.
+
+```{r}
+mean(suma[casos_dado1_es_6] >= 10)
+```
+
+Otra forma equivalente es:
+
+```{r}
+sum((suma >= 10) & (dado1 == 6)) / sum(dado1 == 6)
+```
+
+::: {.callout-question}
+## Para pensar
+
+- ¿Esta probabilidad es igual a la anterior?
+- ¿Por qué cambia?
+- ¿Qué información nueva estamos usando?
+:::
+
+# 7. Visualización de probabilidad condicional
+
+Queremos ver cómo cambia la probabilidad de que la suma sea al menos 10 según el valor del primer dado.
+
+```{r}
+prob_por_dado1 <- tapply(suma >= 10, dado1, mean)
+
+prob_por_dado1
+```
+
+Ahora hacemos un gráfico.
+
+```{r}
+barplot(prob_por_dado1,
+        ylim = c(0, 1),
+        xlab = "Valor del primer dado",
+        ylab = "Proporción con suma al menos 10",
+        main = "Probabilidad de suma >= 10 según el primer dado")
+```
+
+::: {.callout-note}
+## Interpretación
+El gráfico muestra que la probabilidad de obtener una suma grande no es la misma para todos los valores del primer dado. Saber el resultado del primer dado cambia nuestra información.
+:::
+
+# 8. Comparación visual: probabilidad general vs probabilidad condicional
+
+Podemos comparar la probabilidad general con la probabilidad condicional dado que el primer dado fue 6.
+
+```{r}
+prob_general <- mean(suma >= 10)
+prob_condicional <- mean(suma[dado1 == 6] >= 10)
+
+comparacion <- c("Sin información adicional" = prob_general,
+                 "Sabiendo que dado 1 = 6" = prob_condicional)
+
+barplot(comparacion,
+        ylim = c(0, 1),
+        ylab = "Probabilidad aproximada",
+        main = "Comparación de probabilidades")
+```
+
+::: {.callout-question}
+## Para discutir
+
+¿Por qué la segunda barra es más alta?
+:::
+
+# 9. Otra visualización: espacio de casos
+
+También podemos construir una tabla que muestre cuántos casos cumplen o no cumplen el evento, según el valor del primer dado.
+
+```{r}
+tabla_condicional <- table("Primer dado" = dado1,
+                           "Suma >= 10" = suma >= 10)
+
+tabla_condicional
+```
+
+Ahora visualizamos proporciones por fila. Es decir, dentro de cada valor del primer dado, miramos qué proporción cumple el evento.
+
+```{r}
+barplot(prop.table(tabla_condicional, margin = 1),
+        beside = TRUE,
+        legend.text = c("No", "Sí"),
+        ylim = c(0, 1),
+        xlab = "Valor del primer dado",
+        ylab = "Proporción",
+        main = "Dentro de cada valor del primer dado")
+```
+
+::: {.callout-important}
+## Lo importante
+En probabilidad condicional, no usamos todos los casos. Usamos solo los casos que cumplen la condición.
+:::
+
+# 10. Actividad guiada
+
+Modifica el código anterior para estudiar otras preguntas:
+
+1. ¿Cuál es la probabilidad de que la suma sea 7?
+2. ¿Cuál es la probabilidad de que la suma sea 7 si el primer dado fue 3?
+3. ¿Cuál es la probabilidad de que el segundo dado sea par si la suma fue mayor que 8?
+
+Puedes usar estas líneas como base:
+
+```{r}
+mean(suma == 7)
+mean(suma[dado1 == 3] == 7)
+mean(dado2[suma > 8] %% 2 == 0)
+```
+
+# 11. Un problema contraintuitivo: Monty Hall
+
+Ahora veremos un problema famoso donde la intuición suele fallar.
+
+Imagina un concurso con tres puertas:
+
+- detrás de una puerta hay un premio;
+- detrás de las otras dos no hay premio;
+- eliges una puerta;
+- el animador, que sabe dónde está el premio, abre una puerta sin premio;
+- luego te ofrece cambiar tu elección.
+
+La pregunta es:
+
+> ¿Conviene cambiar de puerta o quedarse con la elección inicial?
+
+::: {.callout-question}
+## Antes de simular
+
+Vota una opción:
+
+- Conviene quedarse.
+- Conviene cambiar.
+- Da lo mismo.
+
+Explica brevemente por qué.
+:::
+
+# 12. Simulación de Monty Hall
+
+Primero creamos una función que simula un juego.
+
+```{r}
+jugar_monty_hall <- function(cambiar = TRUE) {
+  
+  puertas <- 1:3
+  
+  premio <- sample(puertas, size = 1)
+  eleccion_inicial <- sample(puertas, size = 1)
+  
+  puertas_para_abrir <- puertas[puertas != premio & puertas != eleccion_inicial]
+  puerta_abierta <- sample(puertas_para_abrir,
+                           size = 1,
+                           replace = FALSE)
+  
+  puertas_para_elegir <- puertas[puertas != eleccion_inicial &
+                                   puertas != puerta_abierta]
+  
+  if (cambiar) {
+    eleccion_final <- puertas_para_elegir[1]
+  } else {
+    eleccion_final <- eleccion_inicial
+  }
+  
+  eleccion_final == premio
+}
+```
+
+Probemos un juego cambiando de puerta.
+
+```{r}
+jugar_monty_hall(cambiar = TRUE)
+```
+
+Probemos un juego sin cambiar de puerta.
+
+```{r}
+jugar_monty_hall(cambiar = FALSE)
+```
+
+# 13. Repetimos muchas veces
+
+Ahora repetimos el juego 10000 veces para comparar ambas estrategias.
+
+```{r}
+resultados_cambiar <- replicate(10000, jugar_monty_hall(cambiar = TRUE))
+resultados_quedarse <- unlist(replicate(10000, jugar_monty_hall(cambiar = FALSE)))
+
+prob_cambiar <- mean(resultados_cambiar)
+prob_quedarse <- mean(resultados_quedarse)
+
+prob_cambiar
+prob_quedarse
+```
+
+Visualicemos los resultados.
+
+```{r}
+comparacion_monty <- c("Cambiar" = prob_cambiar,
+                       "Quedarse" = prob_quedarse)
+
+barplot(comparacion_monty,
+        ylim = c(0, 1),
+        ylab = "Proporción de juegos ganados",
+        main = "Estrategias en el problema de Monty Hall")
+```
+
+::: {.callout-question}
+## Para discutir
+
+- ¿Qué estrategia ganó más veces?
+- ¿El resultado coincide con tu intuición inicial?
+- ¿Por qué la simulación puede ayudarnos en problemas contraintuitivos?
+:::
+
+# 14. Evolución de las estrategias en Monty Hall
+
+También podemos mirar cómo evoluciona la proporción de triunfos a medida que repetimos el juego.
+
+```{r}
+evolucion_cambiar <- cumsum(resultados_cambiar) / 1:10000
+evolucion_quedarse <- cumsum(resultados_quedarse) / 1:10000
+
+plot(evolucion_cambiar,
+     type = "l",
+     ylim = c(0, 1),
+     xlab = "Número de juegos simulados",
+     ylab = "Proporción acumulada de triunfos",
+     main = "Evolución de las estrategias en Monty Hall")
+
+lines(evolucion_quedarse, lty = 2)
+abline(h = 2/3, lty = 3)
+abline(h = 1/3, lty = 3)
+legend("right",
+       legend = c("Cambiar", "Quedarse"),
+       lty = c(1, 2),
+       bty = "n")
+```
+
+::: {.callout-note}
+## Interpretación
+En el problema de Monty Hall, cambiar de puerta gana aproximadamente 2 de cada 3 veces. Quedarse gana aproximadamente 1 de cada 3 veces.
+:::
+
+# 15. Cierre del bloque
+
+En este bloque usamos simulaciones para explorar probabilidades.
+
+Aprendimos que:
+
+- una probabilidad puede aproximarse mediante una proporción;
+- al repetir muchas veces un experimento, aparecen patrones;
+- la probabilidad condicional cambia el conjunto de casos que estamos mirando;
+- los gráficos ayudan a entender cómo cambia una probabilidad cuando tenemos más información;
+- la simulación puede ayudarnos a resolver problemas donde la intuición no basta.
+
+::: {.callout-important}
+## Mensaje final
+Programar nos permite experimentar con ideas matemáticas. En vez de solo imaginar qué podría ocurrir, podemos simularlo, visualizarlo y discutirlo.
+:::
+
+# 16. Desafío final opcional
+
+Modifica la simulación de Monty Hall para hacer 1000 juegos en lugar de 10000.
+
+Luego responde:
+
+- ¿Los resultados son más variables?
+- ¿Cuál estrategia sigue siendo mejor?
+- ¿Qué ocurre si repites la simulación varias veces?
