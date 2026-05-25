@@ -1,0 +1,447 @@
+---
+title: "Bloque 1: RStudio como laboratorio para explorar el azar"
+subtitle: "Explorando el azar con R"
+author: "Taller de programación, simulación y probabilidad"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    code-fold: false
+    code-tools: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+# ¿Qué haremos en este bloque?
+
+En este primer bloque vamos a dar nuestros primeros pasos en R y RStudio. La idea no es aprender programación de manera formal, sino usar R como un laboratorio para experimentar con el azar.
+
+Al terminar este bloque, deberías poder:
+
+- reconocer las partes principales de RStudio;
+- ejecutar instrucciones simples en R;
+- guardar resultados en objetos;
+- simular lanzamientos de monedas y dados;
+- contar resultados con `table()`;
+- calcular proporciones con `mean()`;
+- construir gráficos de barras y gráficos de línea;
+- observar cómo cambian los resultados cuando aumentamos el número de simulaciones.
+
+::: {.callout-note}
+## Idea central
+En este taller vamos a usar código para hacer experimentos. Primero observaremos qué ocurre y luego discutiremos las ideas matemáticas que aparecen.
+:::
+
+# 1. ¿Qué son R y RStudio?
+
+**R** es un lenguaje de programación muy usado para analizar datos, hacer cálculos estadísticos, construir gráficos y simular fenómenos aleatorios.
+
+**RStudio** es una interfaz que nos ayuda a trabajar con R de forma más cómoda.
+
+Una forma simple de pensarlo es:
+
+- **R** es el motor.
+- **RStudio** es el panel de control.
+
+En RStudio veremos principalmente cuatro zonas:
+
+1. **Script**: lugar donde escribimos y guardamos nuestro código.
+2. **Console**: lugar donde R ejecuta las instrucciones.
+3. **Environment**: lugar donde aparecen los objetos que vamos creando.
+4. **Plots**: lugar donde aparecen los gráficos.
+
+::: {.callout-tip}
+## Recomendación
+Durante el taller, vamos a copiar los códigos en un script y los vamos a ejecutar desde ahí. Vamos a guardar los archivos, para volverlos a ocupar durante el taller.
+:::
+
+# 2. Nuestra primera instrucción en R
+
+Comencemos con una instrucción simple. R puede hacer cálculos como una calculadora.
+
+```{r}
+2 + 3
+```
+
+También puede trabajar con texto.
+
+```{r}
+"Hola, estamos usando R"
+```
+
+Pero en este taller lo usaremos principalmente para explorar situaciones aleatorias.
+
+# 3. Primer experimento aleatorio: lanzar una moneda
+
+Supongamos que queremos simular el lanzamiento de una moneda.
+
+```{r}
+sample(c("Cara", "Sello"), size = 1)
+```
+
+Ejecuta el código varias veces.
+
+::: {.callout-question}
+## Para pensar
+
+- ¿El resultado cambia cada vez que ejecutas el código?
+- ¿Puedes saber con seguridad cuál será el próximo resultado?
+- ¿Qué tiene que ver esto con el azar?
+:::
+
+## ¿Qué significa este código?
+
+La instrucción anterior tiene varias partes importantes.
+
+```{r}
+sample(c("Cara", "Sello"), size = 1)
+```
+
+- `sample()` permite seleccionar elementos al azar.
+- `c("Cara", "Sello")` crea una colección con los posibles resultados.
+- `size = 1` indica que queremos seleccionar un resultado.
+
+::: {.callout-note}
+## Vocabulario básico
+Una **función** en R es una instrucción que realiza una tarea. Por ejemplo, `sample()` sirve para seleccionar elementos al azar.
+:::
+
+# 4. Repetir el experimento muchas veces
+
+Ahora no lanzaremos la moneda una vez, sino 10 veces.
+
+```{r}
+sample(c("Cara", "Sello"), size = 10, replace = TRUE)
+```
+
+Aquí aparece un elemento nuevo: `replace = TRUE`.
+
+Esto significa que después de cada lanzamiento, la moneda vuelve a estar disponible. En otras palabras, cada lanzamiento puede volver a ser Cara o Sello.
+
+::: {.callout-tip}
+## Importante
+Cuando simulamos lanzamientos de monedas, dados u otros experimentos repetidos, normalmente usamos `replace = TRUE`.
+:::
+
+# 5. Guardar resultados en un objeto
+
+Muchas veces queremos guardar los resultados para usarlos después. Para eso usamos un **objeto**.
+
+```{r}
+lanzamientos <- sample(c("Cara", "Sello"),
+                       size = 20,
+                       replace = TRUE)
+
+lanzamientos
+```
+
+El símbolo `<-` significa “guardar en”.
+
+En este caso, estamos guardando los 20 lanzamientos en un objeto llamado `lanzamientos`.
+
+::: {.callout-note}
+## Idea clave
+Un objeto es como una caja con nombre. Guardamos información en esa caja para usarla más adelante.
+:::
+
+# 6. Contar resultados con `table()`
+
+Ahora podemos contar cuántas caras y cuántos sellos aparecieron.
+
+```{r}
+table(lanzamientos)
+```
+
+Probemos con más lanzamientos.
+
+```{r}
+lanzamientos <- sample(c("Cara", "Sello"),
+                       size = 100,
+                       replace = TRUE)
+
+table(lanzamientos)
+```
+
+::: {.callout-question}
+## Para discutir
+
+- ¿Aparecen exactamente 50 caras y 50 sellos?
+- Si no ocurre, ¿significa que la moneda está cargada?
+- ¿Qué crees que ocurrirá si hacemos 1000 lanzamientos?
+:::
+
+# 7. Gráficos de barras
+
+Los gráficos nos ayudan a ver los resultados de manera más clara.
+
+```{r}
+barplot(table(lanzamientos),
+        main = "Resultados de 100 lanzamientos",
+        xlab = "Resultado",
+        ylab = "Frecuencia")
+```
+
+Este gráfico muestra frecuencias absolutas, es decir, cantidades.
+
+También podemos mirar frecuencias relativas, es decir, proporciones.
+
+```{r}
+frecuencias_relativas <- table(lanzamientos) / length(lanzamientos)
+
+frecuencias_relativas
+```
+
+```{r}
+barplot(frecuencias_relativas,
+        main = "Frecuencias relativas de 100 lanzamientos",
+        xlab = "Resultado",
+        ylab = "Frecuencia relativa",
+        ylim = c(0, 1))
+```
+
+# 8. Calcular proporciones con `mean()`
+
+En R, una comparación como esta produce valores `TRUE` o `FALSE`.
+
+```{r}
+lanzamientos == "Cara"
+```
+
+R interpreta `TRUE` como 1 y `FALSE` como 0 cuando calculamos un promedio. Por eso, podemos usar `mean()` para calcular proporciones.
+
+```{r}
+mean(lanzamientos == "Cara")
+```
+
+Esto calcula la proporción de lanzamientos que fueron Cara.
+
+::: {.callout-note}
+## Idea importante
+En simulaciones, muchas probabilidades se pueden aproximar calculando proporciones.
+:::
+
+# 9. ¿Qué pasa cuando aumentamos el número de lanzamientos?
+
+Ahora vamos a observar algo muy importante: cómo evoluciona la proporción de caras a medida que hacemos más lanzamientos.
+
+Primero simulamos 1000 lanzamientos.
+
+```{r}
+lanzamientos <- sample(c("Cara", "Sello"),
+                       size = 1000,
+                       replace = TRUE)
+```
+
+Luego calculamos la proporción acumulada de caras.
+
+```{r}
+proporcion_caras <- cumsum(lanzamientos == "Cara") / 1:1000
+```
+
+¿Qué hace esta línea?
+
+- `lanzamientos == "Cara"` identifica cuándo salió Cara.
+- `cumsum()` calcula la suma acumulada.
+- `1:1000` representa el número de lanzamientos realizados hasta cada momento.
+
+Ahora hacemos un gráfico de línea.
+
+```{r}
+plot(proporcion_caras,
+     type = "l",
+     ylim = c(0, 1),
+     xlab = "Número de lanzamientos",
+     ylab = "Proporción acumulada de caras",
+     main = "Evolución de la proporción de caras")
+
+abline(h = 0.5, lty = 2)
+```
+
+::: {.callout-question}
+## Para observar
+
+- ¿La línea es estable desde el principio?
+- ¿Dónde hay más variación: al inicio o al final?
+- ¿Qué representa la línea horizontal?
+:::
+
+::: {.callout-note}
+## Gran idea matemática
+Aunque cada resultado individual es incierto, cuando repetimos muchas veces un experimento aleatorio comienzan a aparecer patrones.
+:::
+
+# 10. Una función para repetir la simulación
+
+A veces queremos repetir una tarea cambiando solo un valor. Para eso podemos crear una **función**.
+
+No necesitas dominar las funciones ahora, pero sí puedes usarlas como herramientas.
+
+```{r}
+simular_moneda <- function(n) {
+  lanzamientos <- sample(c("Cara", "Sello"),
+                         size = n,
+                         replace = TRUE)
+  
+  proporcion_caras <- cumsum(lanzamientos == "Cara") / 1:n
+  
+  plot(proporcion_caras,
+       type = "l",
+       ylim = c(0, 1),
+       xlab = "Número de lanzamientos",
+       ylab = "Proporción acumulada de caras",
+       main = paste("Evolución en", n, "lanzamientos"))
+  
+  abline(h = 0.5, lty = 2)
+}
+```
+
+Ahora podemos usar la función con distintos valores de `n`.
+
+```{r}
+simular_moneda(100)
+```
+
+```{r}
+simular_moneda(1000)
+```
+
+```{r}
+simular_moneda(10000)
+```
+
+::: {.callout-tip}
+## Actividad
+Ejecuta la función varias veces con el mismo valor de `n`. ¿Los gráficos son idénticos? ¿Qué se mantiene parecido?
+:::
+
+# 11. Simulación de un dado
+
+Ahora vamos a simular el lanzamiento de un dado.
+
+```{r}
+dados <- sample(1:6,
+                size = 20,
+                replace = TRUE)
+
+dados
+```
+
+Contamos los resultados.
+
+```{r}
+table(dados)
+```
+
+Hacemos un gráfico de barras.
+
+```{r}
+dados <- sample(1:6,
+                size = 1000,
+                replace = TRUE)
+
+barplot(table(dados),
+        main = "Resultados de 1000 lanzamientos de un dado",
+        xlab = "Resultado",
+        ylab = "Frecuencia")
+```
+
+# 12. Frecuencia relativa de un resultado específico
+
+Por ejemplo, estudiemos la proporción acumulada de veces que aparece el 6.
+
+```{r}
+dados <- sample(1:6,
+                size = 1000,
+                replace = TRUE)
+
+proporcion_seis <- cumsum(dados == 6) / 1:1000
+```
+
+```{r}
+plot(proporcion_seis,
+     type = "l",
+     ylim = c(0, 1),
+     xlab = "Número de lanzamientos",
+     ylab = "Proporción acumulada de seis",
+     main = "Evolución de la proporción de seis")
+
+abline(h = 1/6, lty = 2)
+```
+
+::: {.callout-question}
+## Para pensar
+
+- ¿Por qué la línea horizontal está en 1/6?
+- ¿La proporción acumulada llega exactamente a 1/6?
+- ¿Qué ocurre si aumentamos el número de lanzamientos?
+:::
+
+# 13. Función para simular un dado
+
+```{r}
+simular_dado <- function(n) {
+  dados <- sample(1:6,
+                  size = n,
+                  replace = TRUE)
+  
+  frecuencias_relativas <- table(factor(dados, levels = 1:6)) / n
+  
+  barplot(frecuencias_relativas,
+          ylim = c(0, 0.4),
+          xlab = "Resultado del dado",
+          ylab = "Frecuencia relativa",
+          main = paste("Frecuencias relativas en", n, "lanzamientos"))
+  
+  abline(h = 1/6, lty = 2)
+}
+```
+
+Probemos con distintos tamaños.
+
+```{r}
+simular_dado(60)
+```
+
+```{r}
+simular_dado(600)
+```
+
+```{r}
+simular_dado(6000)
+```
+
+::: {.callout-tip}
+## Actividad en parejas
+Antes de ejecutar cada simulación, predigan qué creen que ocurrirá. Luego comparen su predicción con el gráfico.
+:::
+
+# 14. Resumen del bloque
+
+En este bloque aprendimos a usar R para:
+
+- simular experimentos aleatorios con `sample()`;
+- guardar resultados en objetos usando `<-`;
+- contar resultados con `table()`;
+- calcular proporciones con `mean()`;
+- construir gráficos de barras con `barplot()`;
+- construir gráficos de línea con `plot(..., type = "l")`;
+- agregar líneas de referencia con `abline()`;
+- observar cómo evolucionan las frecuencias relativas cuando aumenta el número de simulaciones.
+
+::: {.callout-important}
+## Para recordar
+La programación nos permite repetir muchas veces un experimento aleatorio y observar patrones que no siempre son evidentes cuando pensamos solo en unos pocos casos.
+:::
+
+# 15. Mini desafío final
+
+Modifica el código de la moneda para estudiar la proporción acumulada de Sellos en lugar de Caras.
+
+Luego responde:
+
+- ¿Qué línea horizontal deberías agregar?
+- ¿El comportamiento es parecido al de las Caras?
+- ¿Por qué?

@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "01_bloque_r_rstudio.html",
+    "href": "01_bloque_r_rstudio.html",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "",
+    "text": "En este primer bloque vamos a dar nuestros primeros pasos en R y RStudio. La idea no es aprender programación de manera formal, sino usar R como un laboratorio para experimentar con el azar.\nAl terminar este bloque, deberías poder:\n\nreconocer las partes principales de RStudio;\nejecutar instrucciones simples en R;\nguardar resultados en objetos;\nsimular lanzamientos de monedas y dados;\ncontar resultados con table();\ncalcular proporciones con mean();\nconstruir gráficos de barras y gráficos de línea;\nobservar cómo cambian los resultados cuando aumentamos el número de simulaciones.\n\n\n\n\n\n\n\nIdea central\n\n\n\nEn este taller vamos a usar código para hacer experimentos. Primero observaremos qué ocurre y luego discutiremos las ideas matemáticas que aparecen."
+  },
+  {
+    "objectID": "01_bloque_r_rstudio.html#qué-significa-este-código",
+    "href": "01_bloque_r_rstudio.html#qué-significa-este-código",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "¿Qué significa este código?",
+    "text": "¿Qué significa este código?\nLa instrucción anterior tiene varias partes importantes.\n\nsample(c(\"Cara\", \"Sello\"), size = 1)\n\n[1] \"Cara\"\n\n\n\nsample() permite seleccionar elementos al azar.\nc(\"Cara\", \"Sello\") crea una colección con los posibles resultados.\nsize = 1 indica que queremos seleccionar un resultado.\n\n\n\n\n\n\n\nVocabulario básico\n\n\n\nUna función en R es una instrucción que realiza una tarea. Por ejemplo, sample() sirve para seleccionar elementos al azar."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Explorando el azar con R",
+    "section": "",
+    "text": "---\ntitle: “Explorando el azar con R”\n---\n# Bienvenidas y bienvenidos\nEn este taller vamos a dar nuestros primeros pasos en programación usando R, uno de los lenguajes más utilizados en el análisis de datos.\nA través de actividades simples e interactivas, exploraremos cómo usar simulaciones para aproximar probabilidades asociadas a fenómenos aleatorios.\n## Material disponible\n- [Bloque 1: Primeros pasos con R y RStudio](01_bloque_r_rstudio.html)"
+  }
+]

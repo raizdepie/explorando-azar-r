@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Explorando el azar con R"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Inicio
+      - href: 01_bloque_r_rstudio.qmd
+        text: Bloque 1
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    embed-resources: true
+    code-fold: false
+
+execute:
+  warning: false
+  message: false
