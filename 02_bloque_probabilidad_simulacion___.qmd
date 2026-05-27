@@ -1,0 +1,390 @@
+---
+title: "Bloque 2: Probabilidad condicional y análisis de datos"
+format: html
+---
+
+# ¿Para qué nos sirve calcular probabilidades?
+
+En el bloque anterior usamos simulaciones para aproximar probabilidades. Lanzamos monedas, repetimos experimentos y observamos cómo las proporciones se estabilizaban cuando aumentaba el número de repeticiones. 
+
+Ahora daremos un paso más.
+
+En muchas situaciones reales no trabajamos solo con monedas o dados. Trabajamos con **datos**. A partir de ellos, podemos conocer probabilidades desde la perspectiva frecuentista que vimos en el bloque anterior. 
+
+
+## Un ejemplo: una tabla de doble entrada
+
+Se encuestó a 70 estudiantes sobre dos preguntas:
+
+1. ¿Escuchas música mientras estudias?
+2. ¿Usas audífonos mientras estudias?
+
+Los resultados fueron:
+
+|                              | Usa audífonos | No usa audífonos | Total |
+|------------------------------|---------------|------------------|-------|
+| Escucha música               | 32            | 8                | 40    |
+| No escucha música            | 10            | 20               | 30    |
+| **Total**                    | **42**        | **28**           | **70** |
+
+---
+
+## Preguntas 
+
+
+> ¿Cuál es la probabilidad de que una estudiante use audífonos?
+
+
+> ¿Cuál es la probabilidad de que una estudiante use audífonos, si sabemos que escucha música mientras estudia?
+
+
+
+::: {.callout-tip}
+## Para conversar
+
+¿Cuál es la diferencia entre ambas preguntas? 
+
+:::
+
+
+
+---
+
+# Ahora trabajaremos con una base de datos
+
+Hasta ahora usamos una tabla pequeña.
+
+Pero cuando tenemos muchos datos, es más útil usar R.
+
+Trabajaremos con una base de datos en la que se registraron las condiciones de lluevia en algunos días y si la estudiante llevó o no paraguas:
+
+- `llueve`: indica si ese día llovió o no.
+- `paraguas`: indica si una estudiante llevó paraguas o no.
+
+A partir de la base de datos, podemos usar la definición de probabilidad frecuentista que vimos en el bloque anterior para responder algunas preguntas como:
+
+1. ¿Cuál es la probabilidad de llevar paraguas?
+2. ¿Cuál es la probabilidad de que llueva?
+3. ¿Cuál es la probabilidad de llevar paraguas si llueve?
+
+---
+
+# Cargar una base de datos en R
+
+El archivo que usaremos se llama:
+
+```text
+paraguas_lluvia.txt
+```
+
+Este archivo va adjunto al correo enviado con el link del material del curso, el cual vamos a descargar y guardar en el escritorio del computador.
+
+Para cargar el archivo al computador, vamos a usar la función **read.table**
+
+```{r}
+datos <- read.table("paraguas_lluvia.txt",
+                    header = TRUE)
+```
+
+¿Qué significa este código?
+
+- `read.table()` le dice a R que queremos leer una tabla.
+- `"paraguas_lluvia.txt"` es el nombre del archivo.
+- `header = TRUE` indica que la primera fila contiene los nombres de las variables.
+- `datos <-` guarda la base de datos con el nombre `datos`.
+
+---
+
+# Mirar las primeras filas
+
+Para ver las primeras filas usamos:
+
+```{r}
+head(datos)
+```
+
+Cada fila representa un día.
+
+Cada columna representa una variable.
+
+---
+
+# ¿Cuántas filas y columnas tiene la base?
+
+La función `nrow()` cuenta cuántas filas tiene una base de datos.
+
+```{r}
+nrow(datos)
+```
+
+La función `ncol()` cuenta cuántas columnas tiene una base de datos.
+
+```{r}
+ncol(datos)
+```
+
+::: {.callout-note}
+## Recordemos
+
+En esta base:
+
+- cada fila representa un día observado;
+- cada columna representa una variable;
+- `nrow(datos)` nos dice cuántos días tenemos;
+- `ncol(datos)` nos dice cuántas variables tenemos.
+:::
+
+---
+
+# Tabla de frecuencias
+
+Podemos cruzar la información de las variables `llueve` y `paraguas` usando `table()` para obtener las frecuencias de cada categoría de las variables.
+```{r}
+table(datos$llueve, datos$paraguas)
+```
+
+Esta tabla nos muestra cuántos días hay en cada combinación:
+
+- días con lluvia y con paraguas;
+- días con lluvia y sin paraguas;
+- días sin lluvia y con paraguas;
+- días sin lluvia y sin paraguas.
+
+---
+
+# ¿Qué podemos hacer con la base de datos?
+
+Entre otras cosas, podemos seleccionar sub-grupos de datos con los que nos interesa calcular probabilidades. 
+
+Para ello, la función `subset()` permite seleccionar solo algunas filas de una base de datos.
+
+Por ejemplo:
+
+```{r}
+subset(datos, paraguas == "Sí")
+```
+
+Este código selecciona solamente los días en que se llevó paraguas.
+
+La estructura general es:
+
+```text
+subset(base_de_datos, condición)
+```
+
+En nuestro ejemplo:
+
+```text
+subset(datos, paraguas == "Sí")
+```
+
+significa:
+
+> tomar la base `datos` y seleccionar solo las filas donde `paraguas` es igual a `"Sí"`.
+
+---
+
+# Probabilidad  de llevar paraguas
+
+Primero calculemos:
+
+> ¿Cuál es la probabilidad de llevar paraguas en un día cualquiera?
+
+Para esto necesitamos contar cuántos días se llevó paraguas.
+
+```{r}
+dias_con_paraguas <- subset(datos, paraguas == "Sí")
+dias_con_paraguas
+```
+
+La función **nrow** nos permite contar la cantidad de filas de la base de datos: 
+```{r}
+nrow(dias_con_paraguas)
+```
+
+Ahora dividimos por el total de días.
+
+```{r}
+prob_paraguas <- nrow(dias_con_paraguas) / nrow(datos)
+
+prob_paraguas
+```
+
+Esto corresponde a una probabilidad marginal porque usamos toda la base de datos.
+
+---
+
+# Probabilidad marginal de lluvia
+
+Ahora calculemos:
+
+> ¿Cuál es la probabilidad de que llueva?
+
+```{r}
+dias_con_lluvia <- subset(datos, llueve == "Sí")
+
+prob_lluvia <- nrow(dias_con_lluvia) / nrow(datos)
+
+prob_lluvia
+```
+
+---
+
+# Probabilidad condicional: paraguas si llueve
+
+Ahora queremos responder:
+
+> ¿Cuál es la probabilidad de llevar paraguas si sabemos que llueve?
+
+Esta es una probabilidad condicional.
+
+Para calcularla, primero seleccionamos solo los días con lluvia.
+
+```{r}
+dias_con_lluvia <- subset(datos, llueve == "Sí")
+```
+
+Ahora, dentro de esos días, seleccionamos los días en que se llevó paraguas.
+
+```{r}
+dias_con_lluvia_y_paraguas <- subset(dias_con_lluvia,
+                                     paraguas == "Sí")
+```
+
+Finalmente calculamos la proporción.
+
+```{r}
+prob_paraguas_si_llueve <- nrow(dias_con_lluvia_y_paraguas) /
+                            nrow(dias_con_lluvia)
+
+prob_paraguas_si_llueve
+```
+
+::: {.callout-important}
+## Idea importante
+
+Para calcular una probabilidad condicional, el denominador cambia.
+
+Ya no usamos todos los días.
+
+Usamos solo los días que cumplen la condición.
+:::
+
+En este caso, la condición es:
+
+> días en que llueve.
+
+---
+
+# Probabilidad condicional: paraguas si no llueve
+
+Ahora respondamos:
+
+> ¿Cuál es la probabilidad de llevar paraguas si sabemos que no llueve?
+
+Primero seleccionamos los días sin lluvia.
+
+```{r}
+dias_sin_lluvia <- subset(datos, llueve == "No")
+```
+
+Luego seleccionamos, dentro de esos días, los días en que se llevó paraguas.
+
+```{r}
+dias_sin_lluvia_y_paraguas <- subset(dias_sin_lluvia,
+                                     paraguas == "Sí")
+```
+
+Calculamos la proporción.
+
+```{r}
+prob_paraguas_si_no_llueve <- nrow(dias_sin_lluvia_y_paraguas) /
+                               nrow(dias_sin_lluvia)
+
+prob_paraguas_si_no_llueve
+```
+
+---
+
+# Comparación de probabilidades
+
+Ahora comparemos las tres probabilidades. Para ello vamos a crear 2 vectores: uno con las probabilidades que hemos calculado y otro con los nombres de cada probabildiad calculada:
+
+```{r}
+valores <- c(prob_paraguas,
+                   prob_paraguas_si_llueve,
+                   prob_paraguas_si_no_llueve)
+
+nombres <-  c("Día cualquiera",
+                "Si llueve",
+                "Si no llueve")
+
+```
+
+---
+
+# Visualización
+
+Construiremos un gráfico de barras para comparar las probabilidades.
+
+```{r}
+barplot(valores,
+        names.arg = nombres,
+        ylim = c(0, 1),
+        col = c("plum", "mediumorchid", "thistle"),
+        main = "Probabilidad de llevar paraguas",
+        xlab = "Información disponible",
+        ylab = "Probabilidad")
+```
+
+::: {.callout-tip}
+## Para conversar
+
+¿Qué probabilidad es más alta?
+
+¿Qué probabilidad es más baja?
+
+¿Por qué cambia la probabilidad cuando sabemos si llueve o no?
+:::
+
+---
+
+# Cierre del taller
+
+Durante este taller usamos programación, simulaciones y análisis de datos para explorar fenómenos aleatorios y responder preguntas usando probabilidades.
+
+Aunque trabajamos con ejemplos simples, las ideas que usamos aparecen en muchos contextos reales:
+
+- predicción del clima;
+- salud pública;
+- redes sociales;
+- deportes;
+- economía;
+- física;
+- videojuegos;
+- química,
+- ingeniería,
+- entre otras.
+
+Las probabilidades nos ayudan a tomar decisiones cuando existe incertidumbre.
+
+Y R nos permite explorar preguntas, organizar información, hacer cálculos y visualizar patrones de manera dinámica.
+
+::: {.callout-note}
+## Mensaje final
+
+La matemática y la estadística consisten en hacer preguntas, explorar ideas, analizar información y descubrir patrones usando datos.
+:::
+
+
+::: {.callout-tip}
+## Para seguir explorando
+
+Muchas áreas actuales utilizan probabilidades, estadística y programación.
+
+La curiosidad, las preguntas y la creatividad son tan importantes como los cálculos.
+
+Aprender R y aprender probabilidades puede abrir muchas puertas para entender mejor el mundo y participar en áreas científicas, tecnológicas y sociales.
+:::
+
+Esperamos que este taller haya mostrado que la programación y las matemáticas pueden transformarse en herramientas para explorar el mundo, hacer preguntas interesantes y desarrollar nuevas ideas.

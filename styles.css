@@ -1,0 +1,50 @@
+.navbar {
+  background-color: #6A0DAD !important;
+}
+
+.navbar a,
+.navbar-brand {
+  color: white !important;
+}
+
+.navbar a:hover {
+  color: #E0C3FC !important;
+}
+
+/* Callout tipo TIP */
+
+.callout-tip {
+  background-color: #F3E8FF !important;
+  border-left: 6px solid #8A2BE2 !important;
+  border-radius: 8px;
+}
+
+.callout-tip .callout-header {
+  background-color: #E9D5FF !important;
+  color: #4B0082 !important;
+  font-weight: bold;
+}
+
+/* Texto interno */
+
+.callout-tip .callout-body {
+  color: #3C096C;
+}
+
+/* Callout tipo NOTE */
+
+.callout-note {
+  background-color: #FAF5FF !important;
+  border-left: 6px solid #C77DFF !important;
+  border-radius: 8px;
+}
+
+.callout-note .callout-header {
+  background-color: #F3E8FF !important;
+  color: #5A189A !important;
+  font-weight: bold;
+}
+
+.callout-note .callout-body {
+  color: #3C096C;
+}
