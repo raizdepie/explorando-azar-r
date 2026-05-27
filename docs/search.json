@@ -4,21 +4,21 @@
     "href": "01_bloque_r_rstudio.html",
     "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
     "section": "",
-    "text": "En este primer bloque vamos a dar nuestros primeros pasos en R y RStudio. La idea no es aprender programación de manera formal, sino usar R como un laboratorio para experimentar con el azar.\nAl terminar este bloque, deberías poder:\n\nreconocer las partes principales de RStudio;\nejecutar instrucciones simples en R;\nguardar resultados en objetos;\nsimular lanzamientos de monedas y dados;\ncontar resultados con table();\ncalcular proporciones con mean();\nconstruir gráficos de barras y gráficos de línea;\nobservar cómo cambian los resultados cuando aumentamos el número de simulaciones.\n\n\n\n\n\n\n\nIdea central\n\n\n\nEn este taller vamos a usar código para hacer experimentos. Primero observaremos qué ocurre y luego discutiremos las ideas matemáticas que aparecen."
+    "text": "R es un lenguaje de programación muy usado para analizar datos, hacer cálculos estadísticos, construir gráficos y simular fenómenos aleatorios.\nRStudio es una interfaz que nos ayuda a trabajar con R de forma más cómoda.\nUna forma simple de pensarlo es:\n\nR es el motor.\nRStudio es el panel de control.\n\n\n\n\nR\nLenguaje de programación para análisis de datos, gráficos y simulaciones.\n\n\n\nRStudio\nEntorno de trabajo para programar en R de forma más simple y organizada.\n\n\n\n\n\n\n\n\nTip\n\n\n\nPor hoy, usaremos los programas que ya están instalados en los computadores. Al usar tu computador personal, ambos programas se pueden descargar desde la página oficial de Posit.\nPágina oficial de descarga:\nDescargar R y RStudio desde Posit\n\n\nDado que Rstudio es una plataforma para manejar de mejor manera con R, abriremos Rstudio para comenzar nuestro trabajo. Al abrir el programa, veremos principalmente cuatro zonas:\n\nScript: lugar donde escribimos y guardamos nuestro código.\nConsole: lugar donde R ejecuta las instrucciones.\nEnvironment: lugar donde aparecen los objetos que vamos creando.\nPlots: lugar donde aparecen los gráficos.\n\n\n\n\nVentanas en Rstudio\n\n\n\n\n\n\n\n\nRecomendación\n\n\n\nDurante el taller, vamos a copiar los códigos en un script y los vamos a ejecutar desde ahí. Vamos a guardar los archivos, para volverlos a ocupar durante el taller.\n\n\n\n\nPara abrir un script y comenzar a escribir nuestro código, vamos a realizar los siguientes pasos:\n\nIr a la pestaña Archivo (File)\nIr a la opción Abrir archivo (New file)\nSeleccionar la opción R script\n\n\n\n\nAbrir script\n\n\n\n\n\nPara ilustrar el uso del script, escribiremos en el archivo una pequeña operación matemática: escribamos en el script la operación\n\n2 + 3\n\n[1] 5\n\n3*4\n\n[1] 12\n\n\nUna vez que escribimos código en el script, podemos ejecutarlo usando:\n\nCtrl + Enter en Windows\nCmd + Enter en Mac\n\nTambién podemos ejecutar la línea de código presionando la tecla Run que aparece en la ventana superior derecha del script:\n\n\n\nEjecutar código\n\n\n\n\n\n\n\n\nTip\n\n\n\nEl código se escribe en el script, pero los resultados aparecen en la consola.\n\n\n\n\n\nGuardar un script nos permite conservar nuestro código para volver a utilizarlo más adelante.\nPara guardar un script en RStudio:\n\nIr al menú Archivo (File).\nSeleccionar Guardar (Save) o Guardar como (Save As)\nElegir una carpeta en el computador. Sugerencia: guardar el archivo en el Escritorio.\nEscribir un nombre para el archivo.\nGuardar el archivo con extensión .R\n\nPor ejemplo:\nbloque1.R\n\n\n\n\n\n\nTip\n\n\n\nGuardar frecuentemente el script evita perder el trabajo realizado durante la programación.\n\n\n\n\n\nSi ya tenemos un script guardado en el computador, podemos volver a abrirlo para seguir trabajando. Para practicar esto, vamos a cerrar el script ya guardado y vamos a volver a abrirlo.\nPara abrir un script en RStudio:\n\nIr al menú Archivo (File).\nSeleccionar Abrir (Open File)\nBuscar la carpeta donde está guardado el archivo.\nSeleccionar el archivo guardado que tiene extensión .R\nHacer clic en Abrir (Open)\n\nEl script aparecerá nuevamente en el panel superior izquierdo de RStudio y podremos seguir editando o ejecutando código.\n\n\n\n\n\n\nTip\n\n\n\nLos archivos con extensión .R contienen código de programación escrito en R."
   },
   {
     "objectID": "01_bloque_r_rstudio.html#qué-significa-este-código",
     "href": "01_bloque_r_rstudio.html#qué-significa-este-código",
     "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
     "section": "¿Qué significa este código?",
-    "text": "¿Qué significa este código?\nLa instrucción anterior tiene varias partes importantes.\n\nsample(c(\"Cara\", \"Sello\"), size = 1)\n\n[1] \"Cara\"\n\n\n\nsample() permite seleccionar elementos al azar.\nc(\"Cara\", \"Sello\") crea una colección con los posibles resultados.\nsize = 1 indica que queremos seleccionar un resultado.\n\n\n\n\n\n\n\nVocabulario básico\n\n\n\nUna función en R es una instrucción que realiza una tarea. Por ejemplo, sample() sirve para seleccionar elementos al azar."
+    "text": "¿Qué significa este código?\nLa instrucción anterior tiene varias partes importantes.\n\nsample(c(\"Cara\", \"Sello\"), size = 1)\n\n[1] \"Sello\"\n\n\n\nsample() permite seleccionar elementos al azar.\nc(\"Cara\", \"Sello\") crea una colección con los posibles resultados.\nsize = 1 indica que queremos seleccionar un resultado.\n\n\n\n\n\n\n\nVocabulario básico\n\n\n\nUna función en R es una instrucción que realiza una tarea. Por ejemplo, sample() sirve para seleccionar elementos al azar.\nTodos los argumentos (inputs) de las funciones van separados por coma ‘,’ tal como se muestra en el código anterior: - el primer argumento es c(\"Cara\", \"Sello\") - el segundo archumento es size = 1"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Explorando el azar con R",
     "section": "",
-    "text": "---\ntitle: “Explorando el azar con R”\n---\n# Bienvenidas y bienvenidos\nEn este taller vamos a explorar fenómenos aleatorios usando simulaciones en R.\nA través de actividades interactivas aprenderemos:\n- cómo usar R y RStudio;\n- cómo simular experimentos aleatorios;\n- cómo aproximar probabilidades mediante simulaciones;\n- cómo visualizar patrones asociados al azar.\n## Materiales del taller\n- [Bloque 1: Primeros pasos con R y simulaciones](01_bloque_r_rstudio.html)\n- [Bloque 2: Probabilidad y probabilidad condicional](02_bloque_probabilidad_simulacion.html)"
+    "text": "En este taller vamos a dar nuestros primeros pasos en programación usando R, uno de los lenguajes más utilizados en el análisis de datos.\nA través de actividades simples e interactivas, exploraremos cómo usar simulaciones para aproximar probabilidades asociadas a fenómenos aleatorios.\n\n\nAntes de explorar R y Rstudio, les cuento que esta actividad la desarrollamos en el marco del Mes de la Mujer en Matemáticas. Vamos a tratar de comprender porqué conmemoramos este mes y la relevancia que tiene.\n\nMujeres en matemáticas...¡y estadística!\n\nLuego de contarles un poco de historia, vamos a conocer R y Rstudio y los elementos básicos que necesitamos para sumergernos en el mundo del azar. Para ello, en el primer bloque vamos a conocer un poco el lenguaje R y las ventajas de Rstudio, para luego simular fenómenos aleatorios y aprender los conceptos de probabilidad y probabilidad condicional.\n\n\n\n\nBloque 1: Primeros pasos con R y RStudio: ¡simulemos!\nBloque 2: Probabilidad y probabilidad condicional"
   },
   {
     "objectID": "02_bloque_simulacion.html",
@@ -60,7 +60,7 @@
     "href": "02_bloque_probabilidad_simulacion.html#evento-obtener-un-número-mayor-o-igual-que-5",
     "title": "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones",
     "section": "Evento: obtener un número mayor o igual que 5",
-    "text": "Evento: obtener un número mayor o igual que 5\n\nmean(dado >= 5)\n\n[1] 0.3385\n\n\nEste código aproxima la probabilidad de obtener 5 o 6.\nTeóricamente, esta probabilidad es:\n\n2 / 6\n\n[1] 0.3333333\n\n\n\n\n\n\n\n\nPara discutir\n\n\n\n\n¿La simulación entrega exactamente el mismo resultado que el cálculo teórico?\n¿Por qué son parecidos?\n¿Por qué no son necesariamente idénticos?"
+    "text": "Evento: obtener un número mayor o igual que 5\n\nmean(dado >= 5)\n\n[1] 0.3352\n\n\nEste código aproxima la probabilidad de obtener 5 o 6.\nTeóricamente, esta probabilidad es:\n\n2 / 6\n\n[1] 0.3333333\n\n\n\n\n\n\n\n\nPara discutir\n\n\n\n\n¿La simulación entrega exactamente el mismo resultado que el cálculo teórico?\n¿Por qué son parecidos?\n¿Por qué no son necesariamente idénticos?"
   },
   {
     "objectID": "02_bloque_probabilidad_simulacion.html#gráfico-de-barras-de-los-resultados",
@@ -74,6 +74,160 @@
     "href": "02_bloque_probabilidad_simulacion.html#evento-a-la-suma-es-al-menos-10",
     "title": "Bloque 2: Probabilidad y probabilidad condicional mediante simulaciones",
     "section": "Evento A: la suma es al menos 10",
-    "text": "Evento A: la suma es al menos 10\n\nmean(suma >= 10)\n\n[1] 0.1685\n\n\nVisualicemos la distribución de la suma.\n\nbarplot(table(factor(suma, levels = 2:12)) / length(suma),\n        xlab = \"Suma de los dos dados\",\n        ylab = \"Frecuencia relativa\",\n        main = \"Distribución de la suma de dos dados\")\n\n\n\n\n\n\n\n\n\n\nPara observar\n\n\n\n\n¿Todas las sumas son igualmente probables?\n¿Qué suma aparece con mayor frecuencia?\n¿Por qué crees que ocurre eso?"
+    "text": "Evento A: la suma es al menos 10\n\nmean(suma >= 10)\n\n[1] 0.172\n\n\nVisualicemos la distribución de la suma.\n\nbarplot(table(factor(suma, levels = 2:12)) / length(suma),\n        xlab = \"Suma de los dos dados\",\n        ylab = \"Frecuencia relativa\",\n        main = \"Distribución de la suma de dos dados\")\n\n\n\n\n\n\n\n\n\n\nPara observar\n\n\n\n\n¿Todas las sumas son igualmente probables?\n¿Qué suma aparece con mayor frecuencia?\n¿Por qué crees que ocurre eso?"
+  },
+  {
+    "objectID": "00_mujeres_matematicas.html",
+    "href": "00_mujeres_matematicas.html",
+    "title": "Mujeres en Matemáticas…¡y estadística!",
+    "section": "",
+    "text": "El año 2018 se estableció que el día 12 de mayo se conmemora el Día Internacional de la Mujer en Matemáticas, les pregunto:\n\n\n\n\n\n\nConversemos…\n\n\n\n\n¿Saben porqué el 12 de mayo se definió como el día para la conmemoración?\nMas relevante aún, ¿porqué creen que la comunidad internacional se puso de acuerdo para conmemorar a las mujeres en matemática?\n¿Saben de mujeres que hayan sido destacadas en matemática, estadística u otra área de las ciencias básicas?\n\n\n\n\n\n\nDía Internacional de las Mujeres en Matemáticas\n\n\n\n\nDía Internacional de la Mujer en Matemáticas\nLa fecha fue escogida en honor a Maryam Mirzakhani (1977–2017), matemática iraní y primera mujer en recibir la Medalla Fields, uno de los reconocimientos más importantes en matemáticas.\nEsta conmemoración busca visibilizar las contribuciones de las mujeres en distintas áreas de las matemáticas y promover una mayor participación femenina en ciencia, tecnología, ingeniería y matemática (STEM).\n\n\n\n\n\n\nUn mensaje…\n\n\n\nConmemorar este día no significa que las mujeres hagan una matemática diferente. Significa reconocer que, históricamente, muchas mujeres enfrentaron barreras para estudiar, investigar y ser reconocidas en matemáticas.\n\n\n\n\n\nMaryam Mirzakhani\n\n\n¿Quieres saber un poco más sobre Maryam Mirzakhani?\n\n\n\nMujeres y estadística\nEl reconocimiento del trabajo de Maryam Mirzakhani fue inspirador para relevar el trabajo que históricamente han desarrollado las mujeres en matemáticas y las ciencias básicas en general. Y la estadística no es la excepción: muchas mujeres han aportado al desarrollo de lo que hoy conocemos como estadística y análisis de datos, las cuales buscaron responder algunas de estas preguntas:\n\n¿cómo se propaga una enfermedad?\n¿cómo se toman decisiones usando datos?\n¿cómo se evalúan tratamientos, políticas públicas o experimentos?\n¿cómo distinguimos patrones reales de simples coincidencias?\n\nLa estadística y la probabilidad nos ayudan a responder este tipo de preguntas. Muchas mujeres han contribuido a desarrollar herramientas para analizar datos, diseñar experimentos, visualizar información y tomar decisiones bajo incertidumbre.\nEn esta primera parte conoceremos brevemente a dos de ellas: Florence Nightingale y Gertrude Cox.\n\n\n\nFlorence Nightingale (1820–1910)\n\n\n\nFlorence Nightingale\n\n\nFlorence Nightingale es conocida mundialmente por su trabajo en enfermería, pero también fue una pionera en estadística y visualización de datos.\nDurante la Guerra de Crimea, analizó datos sobre mortalidad en hospitales militares. A partir de esos datos mostró que muchas muertes no eran causadas directamente por heridas de guerra, sino por malas condiciones sanitarias, infecciones y falta de higiene.\nUna de sus contribuciones más importantes fue usar gráficos para comunicar evidencia.\n\n\n\nDiagrama de rosa-área polar\n\n\nFlorence Nightingale utilizó este gráfico para mostrar que la mayoría de los soldados no morían en batalla, sino por enfermedades causadas por malas condiciones sanitarias. Gracias al análisis de datos y a la visualización de información, logró convencer a las autoridades de mejorar la higiene en los hospitales.\nConoce más sobre Florence Nightingale\n\n\n\nGertrude Cox (1900–1978)\n\n\n\nGertrude Cox\n\n\nGertrude Cox fue una estadística estadounidense reconocida por sus contribuciones al diseño de experimentos y al desarrollo de la estadística moderna.\nTrabajó en métodos para planificar experimentos y analizar los datos obtenidos. Su trabajo fue importante en áreas como agricultura, biología, ingeniería y educación.\nAdemás, Gertrude Cox tuvo un rol clave en la formación de nuevas generaciones de estadísticos y estadísticos, y promovió la participación de mujeres en estadística y ciencia.\nConoce más sobre Gertrude Cox\n\n\n\nPara finalizar esta sección…\nLas historias anteriores queremos que sean una fuente de inspiración para que ustedes y muchas mujeres más sigamos aportando al desarrollo de la ciencia, valorando los espacios que se han abierto hasta ahora y, porqué no, seguir abriendo espacios para las mujeres que vienen."
+  },
+  {
+    "objectID": "00_mujeres_matematicas.html#conexión-con-este-taller",
+    "href": "00_mujeres_matematicas.html#conexión-con-este-taller",
+    "title": "Mujeres en Matemáticas…¡y estadística!",
+    "section": "Conexión con este taller",
+    "text": "Conexión con este taller\nCuando simulemos lanzamientos de monedas, dados o juegos de azar, estaremos haciendo pequeños experimentos computacionales. La idea será repetir, observar, comparar y sacar conclusiones a partir de los datos generados.\nConoce más sobre Gertrude Cox"
+  },
+  {
+    "objectID": "00_mujeres_matematicas.html#conexión-con-este-taller-1",
+    "href": "00_mujeres_matematicas.html#conexión-con-este-taller-1",
+    "title": "Mujeres en Matemáticas…¡y estadística!",
+    "section": "Conexión con este taller",
+    "text": "Conexión con este taller\nCuando simulemos lanzamientos de monedas, dados o juegos de azar, estaremos haciendo pequeños experimentos computacionales. La idea será repetir, observar, comparar y sacar conclusiones a partir de los datos generados.\nConoce más sobre Gertrude Cox"
+  },
+  {
+    "objectID": "index__.html",
+    "href": "index__.html",
+    "title": "Explorando el azar con R",
+    "section": "",
+    "text": "En este taller vamos a explorar fenómenos aleatorios usando simulaciones en R.\nA través de actividades interactivas aprenderemos:\n- cómo usar R y RStudio;\n- cómo simular experimentos aleatorios;\n- cómo aproximar probabilidades mediante simulaciones;\n- cómo visualizar los patrones que encontremos.\n\n\n- [Bloque 0: Mujeres matemáticas](00_mujeres_matematicas.html)\n- [Bloque 1: Primeros pasos con R y simulaciones](01_bloque_r_rstudio.html)\n- [Bloque 2: Probabilidad y probabilidad condicional](02_bloque_probabilidad_simulacion.html)"
+  },
+  {
+    "objectID": "Copia de 01_bloque_r_rstudio.html",
+    "href": "Copia de 01_bloque_r_rstudio.html",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "",
+    "text": "En este primer bloque vamos a dar nuestros primeros pasos en R y RStudio. La idea no es aprender programación de manera formal, sino usar R como un laboratorio para experimentar con el azar.\nAl terminar este bloque, deberías poder:\n\nreconocer las partes principales de RStudio;\nejecutar instrucciones simples en R;\nguardar resultados en objetos;\nsimular lanzamientos de monedas y dados;\ncontar resultados con table();\ncalcular proporciones con mean();\nconstruir gráficos de barras y gráficos de línea;\nobservar cómo cambian los resultados cuando aumentamos el número de simulaciones.\n\n\n\n\n\n\n\nIdea central\n\n\n\nEn este taller vamos a usar código para hacer experimentos. Primero observaremos qué ocurre y luego discutiremos las ideas matemáticas que aparecen."
+  },
+  {
+    "objectID": "Copia de 01_bloque_r_rstudio.html#dónde-se-descargan-r-y-rstudio",
+    "href": "Copia de 01_bloque_r_rstudio.html#dónde-se-descargan-r-y-rstudio",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "¿Dónde se descargan R y RStudio?",
+    "text": "¿Dónde se descargan R y RStudio?\nAntes de trabajar, es importante distinguir que normalmente se instalan dos cosas: primero R y luego RStudio. En la página de Posit para descargar RStudio se entregan las instrucciones para descargar ambos programas.\n\n\n\n\n\n\nInstalación de los programas\n\n\n\nEn tu computador pesonal, instala primero R y luego RStudio Desktop. Hoy vamos a usar los computadores del laboratorio, que ya tienen instalados ambos programas."
+  },
+  {
+    "objectID": "Copia de 01_bloque_r_rstudio.html#paso-1-crear-un-script-nuevo",
+    "href": "Copia de 01_bloque_r_rstudio.html#paso-1-crear-un-script-nuevo",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Paso 1: crear un script nuevo",
+    "text": "Paso 1: crear un script nuevo\nPara crear un script en RStudio:\n\nHaz clic en File.\nLuego selecciona New File.\nDespués elige R Script.\n\n\n\n\n\n\n\n\n¿Por qué usamos un script?\n\n\n\nEs mejor escribir el código en un script que directamente en la consola, porque el script se puede guardar, corregir y volver a ejecutar."
+  },
+  {
+    "objectID": "Copia de 01_bloque_r_rstudio.html#paso-2-guardar-un-script",
+    "href": "Copia de 01_bloque_r_rstudio.html#paso-2-guardar-un-script",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Paso 2: guardar un script",
+    "text": "Paso 2: guardar un script\nDespués de crear el script, debemos guardarlo.\n\nHaz clic en File.\nSelecciona Save As….\nElige una carpeta.\nEscribe un nombre para el archivo, por ejemplo: bloque_1_azar.R.\nPresiona Save.\n\n\n\n\n\n\n\n\nRecomendación\n\n\n\nUsa nombres simples, sin espacios ni tildes. Por ejemplo: mi_primer_script.R, simulacion_moneda.R o bloque_1_azar.R."
+  },
+  {
+    "objectID": "Copia de 01_bloque_r_rstudio.html#paso-3-abrir-un-script-guardado",
+    "href": "Copia de 01_bloque_r_rstudio.html#paso-3-abrir-un-script-guardado",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Paso 3: abrir un script guardado",
+    "text": "Paso 3: abrir un script guardado\nSi ya tienes un script guardado y quieres volver a trabajar en él:\n\nHaz clic en File.\nSelecciona Open File….\nBusca el archivo en tu computador.\nHaz clic en Open."
+  },
+  {
+    "objectID": "Copia de 01_bloque_r_rstudio.html#paso-4-ejecutar-código-desde-el-script",
+    "href": "Copia de 01_bloque_r_rstudio.html#paso-4-ejecutar-código-desde-el-script",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Paso 4: ejecutar código desde el script",
+    "text": "Paso 4: ejecutar código desde el script\nPara ejecutar una línea de código desde el script:\n\nUbica el cursor en la línea que quieres ejecutar.\nPresiona el botón Run.\nTambién puedes usar el atajo de teclado:\n\nCtrl + Enter en Windows;\nCmd + Enter en Mac.\n\n\n\n\n\n\n\n\n\nDurante el taller\n\n\n\nCada vez que aparezca un bloque de código, lo copiaremos en el script y lo ejecutaremos desde ahí. Así podremos modificarlo, guardarlo y volver a usarlo.\n\n\nEn RStudio veremos principalmente cuatro zonas:\n\nScript: lugar donde escribimos y guardamos nuestro código.\nConsole: lugar donde R ejecuta las instrucciones.\nEnvironment: lugar donde aparecen los objetos que vamos creando.\nPlots: lugar donde aparecen los gráficos.\n\n\n\n\n\n\n\nRecomendación\n\n\n\nDurante el taller, vamos a copiar los códigos en un script y los vamos a ejecutar desde ahí. Vamos a guardar los archivos, para volverlos a ocupar durante el taller."
+  },
+  {
+    "objectID": "Copia de 01_bloque_r_rstudio.html#qué-significa-este-código",
+    "href": "Copia de 01_bloque_r_rstudio.html#qué-significa-este-código",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "¿Qué significa este código?",
+    "text": "¿Qué significa este código?\nLa instrucción anterior tiene varias partes importantes.\n\nsample(c(\"Cara\", \"Sello\"), size = 1)\n\n[1] \"Cara\"\n\n\n\nsample() permite seleccionar elementos al azar.\nc(\"Cara\", \"Sello\") crea una colección con los posibles resultados.\nsize = 1 indica que queremos seleccionar un resultado.\n\n\n\n\n\n\n\nVocabulario básico\n\n\n\nUna función en R es una instrucción que realiza una tarea. Por ejemplo, sample() sirve para seleccionar elementos al azar."
+  },
+  {
+    "objectID": "Copia de 01_bloque_r_rstudio.html#qué-son-r-y-rstudio-1",
+    "href": "Copia de 01_bloque_r_rstudio.html#qué-son-r-y-rstudio-1",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "¿Qué son R y RStudio?",
+    "text": "¿Qué son R y RStudio?\n\n\n\n\n\n\n\nR\nLenguaje de programación utilizado para análisis de datos, simulaciones y visualización.\n\n\n\n\n\n\n\nRStudio\nEntorno de trabajo que nos permite programar y trabajar con R de forma más simple."
+  },
+  {
+    "objectID": "01_bloque_r_rstudio.html#ejecutar-código-desde-un-script",
+    "href": "01_bloque_r_rstudio.html#ejecutar-código-desde-un-script",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Ejecutar código desde un script",
+    "text": "Ejecutar código desde un script\nPara ilustrar el uso del script, escribiremos en el archivo una pequeña operación matemática: escribamos en el script la operación\n\n2 + 3\n\n[1] 5\n\n3*4\n\n[1] 12\n\n\nUna vez que escribimos código en el script, podemos ejecutarlo usando:\n\nCtrl + Enter en Windows\nCmd + Enter en Mac\n\nTambién podemos ejecutar la línea de código presionando la tecla Run que aparece en la ventana superior derecha del script:\n\n\n\nEjecutar código\n\n\n\n\n\n\n\n\nTip\n\n\n\nEl código se escribe en el script, pero los resultados aparecen en la consola."
+  },
+  {
+    "objectID": "01_bloque_r_rstudio.html#guardar-un-script",
+    "href": "01_bloque_r_rstudio.html#guardar-un-script",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Guardar un script",
+    "text": "Guardar un script\nGuardar un script nos permite conservar nuestro código para volver a utilizarlo más adelante.\nPara guardar un script en RStudio:\n\nIr al menú Archivo (File).\nSeleccionar Guardar (Save) o Guardar como (Save As)\nElegir una carpeta en el computador. Sugerencia: guardar el archivo en el Escritorio.\nEscribir un nombre para el archivo.\nGuardar el archivo con extensión .R\n\nPor ejemplo:\nbloque1.R\n\n\n\n\n\n\nTip\n\n\n\nGuardar frecuentemente el script evita perder el trabajo realizado durante la programación."
+  },
+  {
+    "objectID": "01_bloque_r_rstudio.html#abrir-un-script-guardado",
+    "href": "01_bloque_r_rstudio.html#abrir-un-script-guardado",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Abrir un script guardado",
+    "text": "Abrir un script guardado\nSi ya tenemos un script guardado en el computador, podemos volver a abrirlo para seguir trabajando. Para practicar esto, vamos a cerrar el script ya guardado y vamos a volver a abrirlo.\nPara abrir un script en RStudio:\n\nIr al menú Archivo (File).\nSeleccionar Abrir (Open File)\nBuscar la carpeta donde está guardado el archivo.\nSeleccionar el archivo guardado que tiene extensión .R\nHacer clic en Abrir (Open)\n\nEl script aparecerá nuevamente en el panel superior izquierdo de RStudio y podremos seguir editando o ejecutando código.\n\n\n\n\n\n\nTip\n\n\n\nLos archivos con extensión .R contienen código de programación escrito en R."
+  },
+  {
+    "objectID": "01_bloque_r_rstudio.html#qué-ocurre-cuando-aumentamos-el-número-de-lanzamientos",
+    "href": "01_bloque_r_rstudio.html#qué-ocurre-cuando-aumentamos-el-número-de-lanzamientos",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "¿Qué ocurre cuando aumentamos el número de lanzamientos?",
+    "text": "¿Qué ocurre cuando aumentamos el número de lanzamientos?\nPrimero haremos el proceso paso a paso.\n\nUn lanzamiento\n\nlanzamientos_1 <- sample(c(\"Cara\", \"Sello\"),\n                         size = 1,\n                         replace = TRUE)\n\nlanzamientos_1\n\n[1] \"Cara\"\n\nmean(lanzamientos_1 == \"Cara\")\n\n[1] 1\n\n\nLa proporción de caras puede ser 0 o 1, porque solo hicimos un lanzamiento.\n\n\n\nDos lanzamientos\n\nlanzamientos_2 <- sample(c(\"Cara\", \"Sello\"),\n                         size = 2,\n                         replace = TRUE)\n\nlanzamientos_2\n\n[1] \"Sello\" \"Cara\" \n\nmean(lanzamientos_2 == \"Cara\")\n\n[1] 0.5\n\n\nAhora la proporción puede ser 0, 0.5 o 1.\n\n\n\nCinco lanzamientos\n\nlanzamientos_5 <- sample(c(\"Cara\", \"Sello\"),\n                         size = 5,\n                         replace = TRUE)\n\nlanzamientos_5\n\n[1] \"Sello\" \"Cara\"  \"Sello\" \"Cara\"  \"Sello\"\n\nmean(lanzamientos_5 == \"Cara\")\n\n[1] 0.4\n\n\n\n\n\nDiez lanzamientos\n\nlanzamientos_10 <- sample(c(\"Cara\", \"Sello\"),\n                          size = 10,\n                          replace = TRUE)\n\nlanzamientos_10\n\n [1] \"Cara\"  \"Sello\" \"Sello\" \"Cara\"  \"Sello\" \"Sello\" \"Sello\" \"Sello\" \"Cara\" \n[10] \"Cara\" \n\nmean(lanzamientos_10 == \"Cara\")\n\n[1] 0.4\n\n\n\n\n\nCincuenta lanzamientos\n\nlanzamientos_50 <- sample(c(\"Cara\", \"Sello\"),\n                          size = 50,\n                          replace = TRUE)\n\nmean(lanzamientos_50 == \"Cara\")\n\n[1] 0.56\n\n\n\n\n\n\n\n\nPara conversar\n\n\n\n¿Qué cambia cuando pasamos de 1 lanzamiento a 50 lanzamientos?\n¿La proporción de caras se vuelve más estable?"
+  },
+  {
+    "objectID": "01_bloque_r_rstudio.html#estamos-repitiendo-una-idea",
+    "href": "01_bloque_r_rstudio.html#estamos-repitiendo-una-idea",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Estamos repitiendo una idea",
+    "text": "Estamos repitiendo una idea\nEn todos los ejemplos hicimos casi lo mismo:\n\nsimulamos una cierta cantidad de lanzamientos;\ncontamos cuántas veces salió “Cara”;\ncalculamos la proporción de caras.\n\nLo único que cambia es el número de lanzamientos.\nCuando en programación repetimos muchas veces una misma idea, podemos crear una función."
+  },
+  {
+    "objectID": "01_bloque_r_rstudio.html#crear-una-función-para-simular-lanzamientos",
+    "href": "01_bloque_r_rstudio.html#crear-una-función-para-simular-lanzamientos",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Crear una función para simular lanzamientos",
+    "text": "Crear una función para simular lanzamientos\nLa siguiente función recibe un número n.\nEse número representa cuántos lanzamientos queremos simular.\n\nproporcion_caras <- function(n) {\n  \n  lanzamientos <- sample(c(\"Cara\", \"Sello\"),\n                         size = n,\n                         replace = TRUE)\n  \n  proporcion <- mean(lanzamientos == \"Cara\")\n  \n  return(proporcion)\n}\n\nAhora podemos usar la función con distintas cantidades de lanzamientos:\n\nproporcion_caras(1)\n\n[1] 0\n\nproporcion_caras(2)\n\n[1] 1\n\nproporcion_caras(5)\n\n[1] 0.8\n\nproporcion_caras(10)\n\n[1] 0.4\n\nproporcion_caras(50)\n\n[1] 0.44\n\nproporcion_caras(100)\n\n[1] 0.46\n\n\n\n\n\n\n\n\nIdea importante\n\n\n\nUna función nos permite guardar un procedimiento para reutilizarlo muchas veces sin escribir todo el código nuevamente."
+  },
+  {
+    "objectID": "01_bloque_r_rstudio.html#guardar-muchas-proporciones",
+    "href": "01_bloque_r_rstudio.html#guardar-muchas-proporciones",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Guardar muchas proporciones",
+    "text": "Guardar muchas proporciones\nAhora queremos repetir el experimento para:\n\n1 lanzamiento;\n2 lanzamientos;\n3 lanzamientos;\n…\n1000 lanzamientos.\n\nPara eso crearemos un vector vacío donde guardaremos los resultados.\n\nn_max <- 1000\n\nproporciones <- numeric(n_max)\n\nAhora usamos un ciclo for.\n\nfor (n in 1:n_max) {\n  proporciones[n] <- proporcion_caras(n)\n}\n\n¿Qué hace este ciclo?\n\ncuando n = 1, calcula la proporción de caras con 1 lanzamiento;\ncuando n = 2, calcula la proporción de caras con 2 lanzamientos;\ncuando n = 3, calcula la proporción de caras con 3 lanzamientos;\ny así sucesivamente hasta llegar a 1000.\n\nPodemos mirar los primeros valores:\n\nproporciones[1:10]\n\n [1] 1.0000000 1.0000000 0.0000000 0.7500000 0.0000000 0.6666667 0.4285714\n [8] 0.5000000 0.5555556 0.7000000"
+  },
+  {
+    "objectID": "01_bloque_r_rstudio.html#graficar-la-evolución",
+    "href": "01_bloque_r_rstudio.html#graficar-la-evolución",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "Graficar la evolución",
+    "text": "Graficar la evolución\nAhora construiremos un gráfico de línea para observar cómo cambia la proporción de caras cuando aumenta el número de lanzamientos.\n\nplot(proporciones,\n     type = \"l\",\n     ylim = c(0, 1),\n     xlab = \"Número de lanzamientos\",\n     ylab = \"Proporción de caras\",\n     main = \"Evolución de la proporción de caras\")\n\nabline(h = 0.5,\n       lty = 2,\n       col=\"red\")\n\n\n\n\n\n\n\n\n\n\nPara pensar\n\n\n\n¿Qué ocurre al comienzo del gráfico?\n¿Qué ocurre cuando aumenta el número de lanzamientos?\n¿Por qué la proporción parece estabilizarse cerca de 0.5?\n¿A qué corresponde el valor 0.5?\n\n\nLa línea punteada representa el valor 0.5, que corresponde a la probabilidad teórica de obtener cara en una moneda equilibrada.\nA medida que aumentamos el número de lanzamientos, observamos que la proporción de caras comienza a estabilizarse cerca de 0.5.\nEsto es muy importante, porque muestra cómo podemos aproximar probabilidades a través de simulaciones y repeticiones de experimentos aleatorios.\nEn otras palabras:\n\nrealizamos muchos experimentos;\nobservamos la frecuencia relativa de un resultado;\ny usamos esa frecuencia para aproximar la probabilidad.\n\nEsta idea corresponde a la interpretación frecuentista de la probabilidad."
+  },
+  {
+    "objectID": "01_bloque_r_rstudio.html#cuál-es-la-probabilidad-de-obtener-cara",
+    "href": "01_bloque_r_rstudio.html#cuál-es-la-probabilidad-de-obtener-cara",
+    "title": "Bloque 1: RStudio como laboratorio para explorar el azar",
+    "section": "¿Cuál es la probabilidad de obtener cara?",
+    "text": "¿Cuál es la probabilidad de obtener cara?\nYa vimos que podemos calcular la proporción de caras usando:\n\nmean(lanzamientos == \"Cara\")\n\n[1] 0.4\n\n\nPero ahora aparece una pregunta importante:\n\n\n\n\n\n\nPara conversar\n\n\n\nSi lanzamos una moneda muchas veces, ¿cómo podríamos aproximar la probabilidad de obtener cara?\n\n¿Bastará con un solo lanzamiento?\n¿Qué ocurrirá si hacemos más lanzamientos?\n¿La proporción cambiará mucho o poco?\n\n\n\nUna idea natural es repetir el experimento muchas veces y observar cómo cambia la proporción de caras.\nComenzaremos haciendo el proceso paso a paso.\nEn R, una comparación como esta produce valores TRUE o FALSE.\n\nlanzamientos == \"Cara\"\n\n  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE\n [13] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE\n [25] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE\n [37] FALSE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE\n [49] FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE\n [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE\n [73]  TRUE FALSE  TRUE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE\n [85]  TRUE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE  TRUE FALSE\n [97]  TRUE FALSE FALSE FALSE\n\n\nR interpreta TRUE como 1 y FALSE como 0 cuando calculamos un promedio. Por eso, podemos usar mean() para calcular proporciones.\n\nmean(lanzamientos == \"Cara\")\n\n[1] 0.4\n\n\nEsto calcula la proporción de lanzamientos que fueron Cara."
+  },
+  {
+    "objectID": "02_bloque_probabilidad_simulacion___.html",
+    "href": "02_bloque_probabilidad_simulacion___.html",
+    "title": "Bloque 2: Probabilidad condicional y análisis de datos",
+    "section": "",
+    "text": "En el bloque anterior usamos simulaciones para aproximar probabilidades. Lanzamos monedas, repetimos experimentos y observamos cómo las proporciones se estabilizaban cuando aumentaba el número de repeticiones.\nAhora daremos un paso más.\nEn muchas situaciones reales no trabajamos solo con monedas o dados. Trabajamos con datos. A partir de ellos, podemos conocer probabilidades desde la perspectiva frecuentista que vimos en el bloque anterior.\n\n\nSe encuestó a 70 estudiantes sobre dos preguntas:\n\n¿Escuchas música mientras estudias?\n¿Usas audífonos mientras estudias?\n\nLos resultados fueron:\n\n\n\n\n\n\n\n\n\n\nUsa audífonos\nNo usa audífonos\nTotal\n\n\n\n\nEscucha música\n32\n8\n40\n\n\nNo escucha música\n10\n20\n30\n\n\nTotal\n42\n28\n70\n\n\n\n\n\n\n\n\n¿Cuál es la probabilidad de que una estudiante use audífonos?\n\n\n¿Cuál es la probabilidad de que una estudiante use audífonos, si sabemos que escucha música mientras estudia?\n\n\n\n\n\n\n\nPara conversar\n\n\n\n¿Cuál es la diferencia entre ambas preguntas?"
   }
 ]
